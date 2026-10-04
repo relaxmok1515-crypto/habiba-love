@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Habiba ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #12070d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 25px;
+    margin-bottom: 35px;
+    letter-spacing: 1px;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #b91c4b;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.5);
+}
+
+.letter {
+    position: absolute;
+    width: 86%;
+    height: 90%;
+    left: 7%;
+    bottom: 5%;
+    background: #fff5f7;
+    color: #b91c4b;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    transition: 0.8s;
+    z-index: 2;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 105px solid #d92b5d;
+    transform-origin: top;
+    transition: 0.8s;
+    z-index: 4;
+}
+
+.front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid #a91442;
+    border-right: 150px solid #a91442;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid #a91442;
+    z-index: 3;
+}
+
+.name {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    top: 75px;
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+    pointer-events: none;
+}
+
+.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.open .letter {
+    transform: translateY(-120px);
+}
+
+.message {
+    opacity: 0;
+    margin-top: 100px;
+    transition: 1s;
+    font-size: 34px;
+    font-weight: bold;
+    color: #ff477e;
+    text-shadow: 0 0 20px #ff477e;
+}
+
+.show-message {
+    opacity: 1;
+}
+
+.heart {
+    position: fixed;
+    color: #ff477e;
+    font-size: 20px;
+    animation: fall linear infinite;
+    top: -30px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Someone has a message for you ❤️</h1>
+
+    <div class="envelope" id="envelope">
+
+        <div class="back"></div>
+
+        <div class="letter">
+            I LOVE YOU ❤️
+        </div>
+
+        <div class="flap"></div>
+
+        <div class="front"></div>
+
+        <div class="name">
+            For Habiba ❤️
+        </div>
+
+    </div>
+
+    <div class="message" id="message">
+        I LOVE YOU ❤️
+    </div>
+
+</div>
+
+<script>
+
+const envelope = document.getElementById("envelope");
+const message = document.getElementById("message");
+
+envelope.addEventListener("click", () => {
+    envelope.classList.toggle("open");
+
+    if (envelope.classList.contains("open")) {
+        setTimeout(() => {
+            message.classList.add("show-message");
+        }, 700);
+    } else {
+        message.classList.remove("show-message");
+    }
+});
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}
+
+setInterval(createHeart, 500);
+
+</script>
+
+</body>
+</html>
